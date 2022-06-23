@@ -1,0 +1,20 @@
+<hr>
+<h4 class="container text-center mt-5">
+    Enter the information you need support, we will respond as quickly as possible</h4>
+
+<form method="post" action="/supports" enctype="application/x-www-form-urlencoded" class="mt-5 container">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input name="emails" type="email" placeholder="enter your email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Phone Number</label><br>
+        <input class="form-control" type="tel" name="phonenum" id="phone_number" pattern="[0]{1}[0-9]{9}$" placeholder="Enter your phone" required="required"/>
+    </div>
+    <div class="mb-3">
+        <span>Content need support !!!</span>
+        <textarea name="content" type="text" class="form-control" id="exampleFormTextArea" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin - Upload</title>
+
+    <style>
+        <% include bg_css_add.ejs %>
+    </style>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+<body style="background-color: #c4c4c9">
+    <div class="formbg-outer">
+        <div class="formbg">
+            <h1 class="pt-2" style="margin-left: 120px">Upload File</h1>
+            <form style="margin-left: 20px" method="post" action="/upload"  >
+
+                <div class="mb-4" style="width: 400px">
+                    <label for="formFile" class="form-label">Title Image</label>
+                    <input name="titleImg" class="form-control" type="text">
+                </div>
+
+                <div class="mb-4" style="width: 400px">
+                    <label for="formFile" class="form-label">Deltais Image</label>
+                    <input name="deltaisImg" class="form-control" type="text">
+                </div>
+
+                <div class="mb-4" style="width: 400px">
+                    <label for="formFile" class="form-label">Chosse Image</label>
+                    <input onchange="previewFile()" name="myImg" class="form-control" type="file" id="image">
+                    <img class="mt-3" id="img_preview" src="" height="200" alt="Image preview...">  <br>
+                    <input type="hidden" name="anh_dai_dien" id="anh_dai_dien">
+
+                </div>
+
+                <select name="collection_img" class="form-select mb-4" aria-label="Select collection" style="width: 400px">
+                    <option selected>Select collection</option>
+                    <option value="1">Nature</option>
+                    <option value="2">Landscape</option>
+                    <option value="3">Desktop</option>
+                    <option value="4">Mobile</option>
+                    <option value="5">Moon</option>
+                    <option value="6">Sunset</option>
+                    <option value="7">Stars</option>
+                    <option value="8">Anime</option>
+                    <option value="9">Live Wallpaper</option>
+                    <option value="10">SlideShow</option>
+                </select>
+                <input style="margin-left: 160px" class="btn btn-outline-success mb-3" type="submit" name="submit" value="Add">
+
+<!--                <button style="margin-left: 150px" type="button" class="btn btn-outline-success mb-3">Submit</button>-->
+            </form>
+
+            <span class="pb-3" style="margin-left: 170px; color: #1cc88a"> <%= mess %> </span>
+        </div>
+    </div>
+    <script>
+        function previewFile() {
+            const preview = document.querySelector('#img_preview');
+            const file =  document.querySelector('#image').files[0];
+            const anh_dai_dien = document.querySelector('#anh_dai_dien');
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                // chuyển ảnh thành chuỗi base64
+                preview.src = reader.result;
+                anh_dai_dien.value = reader.result;// cái này để post lên server
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
